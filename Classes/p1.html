@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+    <style>
+    .box {
+  width: 300px;   /* fixed 300px wide */
+  height: 150px;  /* fixed 150px tall */
+}
+.box1 {
+  margin: 97px 0;
+  padding: 20px;
+  border: 3px solid gray;
+  background: red;
+}
+.parent {
+  width: 600px;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.box {
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px solid gray;
+  background: rgb(93, 189, 216);
+}
+
+.length { width: 300px; }
+.percent { width: 50%; }
+.auto { width: auto; }
+.max { width: max-content; }
+.min { width: min-content; }
+.fit { width: fit-content(200px); }
+.calc { width: calc(100% - 50px); }
+.clamp { width: clamp(150px, 40%, 400px); }
+ </style>
+  </head>
+ 
+<body>
+  <div class="box box1">
+    <h1>Vaibhav</h1></div>
+  <div class="parent">
+  <div class="box length">Length (300px)</div>
+  <div class="box percent">Percent (50%)</div>
+  <div class="box auto">Auto</div>
+  <div class="box max">Max-content</div>
+  <div class="box min">Min-content</div>
+  <div class="box fit">Fit-content(200px)</div>
+  <div class="box calc">Calc(100% - 50px)</div>
+  <div class="box clamp">Clamp(150px, 40%, 400px)</div>
+</div>
+  
+</div>
+</body>
+</html>

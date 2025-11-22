@@ -1,0 +1,47 @@
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width:100vw;
+    
+}
+#container{
+    height:75vh;
+    width:25vw;
+    background-color: transparent;
+    border-radius: 15%;
+
+}#card{
+    height:100%;
+    width:100%;
+    position: relative;
+    background-color: transparent;
+    border-radius: 15%;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+#front{
+    height:100%;
+    width:100%;
+    position:absolute;
+    
+    border-radius: 15%;
+    background: linear-gradient(180deg, rgb(200,119,64), rgb(255,180,100));
+    backface-visibility: hidden;
+    
+}
+#back{
+    height:100%;
+    width:100%;
+    position: absolute;
+    
+    border-radius: 15%;
+    background: blue;
+    backface-visibility: hidden;
+    
+    transform: rotateY(180deg);
+}
+ #container:hover #card {
+        transform: rotateY(180deg);
+      }

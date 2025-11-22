@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three Color Rectangle</title>
+  <style>
+    /* Center the rectangle on the page */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;        /* full screen height */
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    /* Rectangle container */
+    .rectangle {
+      width: 400px;
+      height: 200px;
+      display: flex;
+      border-radius: 12px;
+      overflow: hidden;     /* hides any overflow between colors */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Each color section */
+    .part1 {
+      flex: 1;
+      background-color: #ff4b4b; /* Red */
+    }
+    .part2 {
+      flex: 1;
+      background-color: #4bff4b; /* Green */
+    }
+    .part3 {
+      flex: 1;
+      background-color: #4b4bff; /* Blue */
+    }
+  </style>
+</head>
+<body>
+  <div class="rectangle">
+    <div class="part1"></div>
+    <div class="part2"></div>
+    <div class="part3"></div>
+  </div>
+</body>
+</html>

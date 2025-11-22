@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            align-items: center;
+            height:100vh;
+            justify-content: center;
+            margin-top: 40px;
+            background: linear-gradient(135deg,rgb(22, 8, 101),rgb(10, 225, 189));
+        }
+
+        .form-box {
+            width: 350px;
+            padding: 20px;
+            border-radius: 10px;
+            background: linear-gradient(135deg,rgb(10, 225, 189),rgb(60, 5, 164));
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group input {
+            width: 80%;
+            padding: 10px;
+            font-size: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            height: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #3498db;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+        }
+
+        button:hover {
+            background: #217dbb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-box">
+        <h2>Registration Form</h2>
+
+        <form id="myForm">
+
+            <div class="input-group">
+                <input type="text" id="name" placeholder="Enter Name">
+                <div class="error" id="nameError"></div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="email" placeholder="Enter Email">
+                <div class="error" id="emailError"></div>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Enter Password">
+                <div class="error" id="passError"></div>
+            </div>
+
+            <button type="submit">Register</button>
+
+        </form>
+    </div>
+
+
+    <script>
+        let form = document.getElementById("myForm");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault(); 
+            
+          
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let pass = document.getElementById("password").value.trim();
+
+          
+            let nameErr = document.getElementById("nameError");
+            let emailErr = document.getElementById("emailError");
+            let passErr = document.getElementById("passError");
+
+            
+            nameErr.textContent = "";
+            emailErr.textContent = "";
+            passErr.textContent = "";
+
+            let valid = true;
+
+           
+            if (name === "") {
+                nameErr.textContent = "Name is required";
+                valid = false;
+            }
+
+           
+            if (email === "") {
+                emailErr.textContent = "Email is required";
+                valid = false;
+            } else if (!email.includes("@")) {
+                emailErr.textContent = "Invalid email (must contain @)";
+                valid = false;
+            }
+
+          
+            if (pass === "") {
+                passErr.textContent = "Password is required";
+                valid = false;
+            } else if (pass.length < 8) {
+                passErr.textContent = "Password must be 8+ characters";
+                valid = false;
+            }
+
+            
+            if (valid) {
+                alert("Registration Successful!");
+            }
+        });
+    </script>
+
+</body>
+</html>

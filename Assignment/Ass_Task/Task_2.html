@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Character Counter</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #3d7ee7, #043327);
+
+
+
+        }
+
+        .card {
+            padding: 20px;
+            width: 50%;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #37badb, #105391);
+
+        }
+
+        textarea {
+            width: 75%;
+            height: 50%;
+            resize: none;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #555;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        #counter {
+            font-size: 17px;
+            margin-top: 10px;
+            font-weight: bold;
+            color: rgb(11, 2, 58); /* default */
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="card">
+        <h2>Live Character Counter</h2>
+
+        <textarea id="textBox" maxlength="100" placeholder="Type here..."></textarea>
+        <p id="counter">Characters left: 100</p>
+    </div>
+
+
+    <script>
+        const textBox = document.getElementById("textBox");
+        const counter = document.getElementById("counter");
+        const limit = 100;
+
+        textBox.addEventListener("input", () => {
+            let typed = textBox.value.length;
+            let remaining = limit - typed;
+
+            counter.textContent = "Characters left: " + remaining;
+
+            
+            if (remaining > 60) {
+                counter.style.color = rgb(11, 2, 58);
+            } else if (remaining > 20) {
+                counter.style.color = "yellow";
+            } else {
+                counter.style.color = "red";
+            }
+        });
+    </script>
+
+</body>
+</html>
