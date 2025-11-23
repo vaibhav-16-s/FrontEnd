@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Data Fetch</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e9eef5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            margin: 0 auto 20px auto;
+            padding: 12px 26px;
+            cursor: pointer;
+            font-size: 16px;
+            background: #4a73e4;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #345dcc;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th {
+            background: #4a73e4;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        tr:nth-child(even) {
+            background: #f7f9ff;
+        }
+
+        tr:hover {
+            background: #e9f0ff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>User Details</h1>
+
+        <button id="refreshBtn">Refresh Data</button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+            </tbody>
+        </table>
+
+    </div>
+
+    <script>
+        const API_URL = "https://jsonplaceholder.typicode.com/users";
+        const tableBody = document.getElementById("userTableBody");
+        const refreshBtn = document.getElementById("refreshBtn");
+
+        async function fetchUsers() {
+            try {
+                tableBody.innerHTML = "<tr><td colspan='3'>Loading...</td></tr>";
+
+                const response = await fetch(API_URL);
+                const users = await response.json();
+
+                tableBody.innerHTML = "";
+
+                users.forEach(user => {
+                    const row = `
+                        <tr>
+                            <td>${user.name}</td>
+                            <td>${user.email}</td>
+                            <td>${user.address.city}</td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+
+            } catch (error) {
+                tableBody.innerHTML = "<tr><td colspan='3'>Error loading data</td></tr>";
+                console.error("Fetch error:", error);
+            }
+        }
+
+        refreshBtn.addEventListener("click", fetchUsers);
+
+        fetchUsers();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Joke Generator</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef3ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 400px;
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #2b4fc1;
+        }
+
+        p {
+            font-size: 18px;
+            padding: 10px;
+            min-height: 40px;
+        }
+
+        #punchline {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 16px;
+            background: #2b4fc1;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #1e37a8;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <h2>Random Joke</h2>
+
+        <p id="setup">Click "Next Joke" to get a joke!</p>
+        <p id="punchline"></p>
+
+        <button id="btn">Next Joke</button>
+    </div>
+
+    <script>
+        function getJoke() {
+            document.getElementById("setup").textContent = "Loading joke...";
+            document.getElementById("punchline").textContent = "";
+
+            fetch("https://official-joke-api.appspot.com/random_joke")
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(joke) {
+                    document.getElementById("setup").textContent = joke.setup;
+                    document.getElementById("punchline").textContent = joke.punchline;
+                })
+                .catch(function(error) {
+                    document.getElementById("setup").textContent = "Error loading joke.";
+                    console.log("Error:", error);
+                });
+        }
+
+        document.getElementById("btn").addEventListener("click", getJoke);
+
+        getJoke();
+    </script>
+
+</body>
+</html>
